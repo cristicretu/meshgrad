@@ -6,8 +6,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import Footer from 'components/Footer/Footer'
-import cn from 'lib/classNames'
 import Corner from 'components/GitHubCorner'
+import cn from 'lib/classNames'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Container(props: any) {

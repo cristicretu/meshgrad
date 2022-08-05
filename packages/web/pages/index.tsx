@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react'
 import { cssLanguage } from '@codemirror/lang-css'
 import { githubDark, githubLight } from '@uiw/codemirror-theme-github'
 import CodeMirror from '@uiw/react-codemirror'
-import Container from 'components/Container'
 import { useTheme } from 'next-themes'
+
+import Container from 'components/Container'
 
 import { generateMeshGradient } from '../lib/index'
 
