@@ -8,9 +8,6 @@
   "keywords": [],
   "author": "Cristian Crețu<crisemcr@gmail.com>",
   "license": "MIT",
-  "workspaces": [
-    "packages/*"
-  ],
   "engines": {
     "node": ">=12.22.0",
     "pnpm": ">= 7.2.1"
