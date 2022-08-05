@@ -1,0 +1,19 @@
+{
+  "name": "meshgrad",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev:web": "pnpm --filter web dev"
+  },
+  "keywords": [],
+  "author": "Cristian Crețu<crisemcr@gmail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=12.22.0",
+    "pnpm": ">= 7.2.1"
+  },
+  "packageManager": "pnpm@7.3.0"
+}
