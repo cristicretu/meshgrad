@@ -1,0 +1,3 @@
+var c=()=>Math.round(Math.random()*360),u=n=>Math.round(Math.random()*(n*100)%100),g=(n,t,o=!0,e=!0)=>Array.from({length:n},(s,r)=>r===0?`hsl(${t}, 100%, 80%)`:r<n/1.4&&o?`hsl(${t-30*(1-2*(r%2))*(r>2?r/2:r)}, 100%, ${76-r*(1-2*(r%2))*1.75}%)`:e?`hsl(${t-150*(1-2*(r%2))}, 100%, ${76-r*(1-2*(r%2))*1.25}%)`:`hsl(${t}, 100%, 80%)`),m=(n,t)=>Array.from({length:n},(o,e)=>{let s=t[e],r=u(e),a=u(e*10);return`radial-gradient(at ${r}% ${a}%, ${s} 0px, transparent 50%)
+`}),d=n=>{let t=c(),o=g(n,t),e=m(n,o),s=`${o[0]}`,r=`${e.join(`,
+`)}`;return{backgroundColor:s,backgroundImage:r}},b=d;export{b as default};

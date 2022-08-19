@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "description": "A tiny utility for generating CSS Mesh Gradients",
+  "name": "meshgrad",
+  "author": "Cristian Crețu",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "cp ../README.md . && pnpm build",
+    "postpublish": "rm README.md",
+    "build": "tsup src",
+    "dev": "tsup src --watch"
+  },
+  "keywords": [
+    "mesh-gradients"
+  ],
+  "devDependencies": {
+    "tsup": "^6.2.2"
+  }
+}
