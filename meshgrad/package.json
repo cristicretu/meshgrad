@@ -1,8 +1,20 @@
 {
   "version": "0.0.1",
   "description": "A tiny utility for generating CSS Mesh Gradients",
+  "homepage": "https://meshgrad.cretu.dev",
   "name": "meshgrad",
-  "author": "Cristian Crețu",
+  "author": {
+    "email": "crisemcr@gmail.com",
+    "name": "Cristian Crețu",
+    "url": "https://cretu.dev"
+  },
+  "bugs": {
+    "url": "https://github.com/cristicretu/meshgrad/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cristicretu/meshgrad.git"
+  },
   "license": "MIT",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

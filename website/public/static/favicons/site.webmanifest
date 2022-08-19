@@ -1,7 +1,7 @@
 {
-  "name": "Template",
-  "short_name": "template.cretu.dev",
-  "description": "Template",
+  "name": "Meshgrad",
+  "short_name": "meshgrad.cretu.dev",
+  "description": "meshgrad",
   "icons": [
     {
       "src": "/static/favicons/android-chrome-192x192.png",

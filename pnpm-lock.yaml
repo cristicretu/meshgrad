@@ -30,6 +30,7 @@ importers:
       eslint-config-next: 12.2.3
       eslint-config-prettier: ^8.5.0
       eslint-plugin-prettier: ^4.2.1
+      meshgrad: workspace:^0.0.1
       next: ^12.2.3
       next-themes: ^0.2.0
       postcss: ^8.4.14
@@ -58,6 +59,7 @@ importers:
       eslint: 8.22.0
       eslint-config-next: 12.2.3_4rv7y5c6xz3vfxwhbrcxxi73bq
       eslint-plugin-prettier: 4.2.1_i2cojdczqdiurzgttlwdgf764e
+      meshgrad: link:../meshgrad
       postcss: 8.4.16
       prettier: 2.7.1
       tailwindcss: 3.1.8

@@ -7,51 +7,13 @@
     font-family: 'Inter';
     font-style: normal;
     font-weight: 100 900;
-    font-display: swap;
-    src: url('/fonts/Inter-Regular.woff2') format('woff2');
+    font-display: optional;
+    src: url(/inter-var-latin.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
   }
 
-  .github-corner:hover .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
-  }
-
-  @keyframes octocat-wave {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    20% {
-      transform: rotate(-25deg);
-    }
-
-    40% {
-      transform: rotate(10deg);
-    }
-
-    60% {
-      transform: rotate(-25deg);
-    }
-
-    80% {
-      transform: rotate(10deg);
-    }
-
-    100% {
-      transform: rotate(0deg);
-    }
-  }
-
-  @media (max-width: 500px) {
-    .github-corner:hover .octo-arm {
-      animation: none;
-    }
-
-    .github-corner .octo-arm {
-      animation: octocat-wave 560ms ease-in-out;
-    }
-  }
-
-  
   .capsize::before {
     content: '';
     margin-bottom: -0.098em;
@@ -210,11 +172,11 @@
   }
 
   .button-primary-x {
-    @apply flex space-x-2 flex-none items-center justify-center cursor-pointer leading-none transition-all font-semibold px-4 py-2 text-sm rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-1000 shadow-sm bg-white dark:bg-gray-900 border border-gray-400 border-opacity-30 dark:border-opacity-30 dark:border-gray-500 dark:hover:text-white hover:border-opacity-50 dark:hover:border-opacity-50 hover:shadow-sm;
+    @apply flex items-center justify-center flex-none px-4 py-2 space-x-2 text-sm font-semibold leading-none text-gray-700 transition-all bg-white border border-gray-400 rounded-md shadow-sm cursor-pointer dark:text-gray-300 hover:text-gray-1000 dark:bg-gray-900 border-opacity-30 dark:border-opacity-30 dark:border-gray-500 dark:hover:text-white hover:border-opacity-50 dark:hover:border-opacity-50 hover:shadow-sm;
   }
 
   .button-primary-y {
-    @apply flex space-x-2 flex-none items-center justify-center cursor-pointer leading-none font-semibold px-2 py-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-gray-1000 shadow-sm bg-white dark:bg-gray-900 border border-gray-400 border-opacity-30 dark:border-opacity-30 dark:border-gray-500 dark:hover:text-white hover:border-opacity-50 dark:hover:border-opacity-50 hover:shadow-sm;
+    @apply flex items-center justify-center flex-none px-2 py-2 space-x-2 font-semibold leading-none text-gray-700 bg-white border border-gray-400 rounded-md shadow-sm cursor-pointer dark:text-gray-300 hover:text-gray-1000 dark:bg-gray-900 border-opacity-30 dark:border-opacity-30 dark:border-gray-500 dark:hover:text-white hover:border-opacity-50 dark:hover:border-opacity-50 hover:shadow-sm;
   }
 
   .filter-none {
