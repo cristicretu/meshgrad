@@ -28,10 +28,10 @@ export default function Home() {
       <div className='relative inset-0 flex flex-col items-center justify-center gap-4'>
         <VersionBadge />
         <h1 className='font-semibold tracking-tighter text-7xl'>Meshgrad</h1>
-        <p className='text-xl text-tertiary'>
+        <p className='text-xl text-center text-tertiary'>
           A tiny utility for generating CSS Mesh Gradients.
         </p>
-        <div className='flex items-center justify-center gap-4 mb-12'>
+        <div className='flex flex-col items-center justify-center gap-4 mb-12 md:flex-row'>
           <InstallButton />
           <GitHubButton />
         </div>
@@ -43,7 +43,7 @@ export default function Home() {
           Try it here
         </button>
         <div
-          className='absolute w-[800px] h-[700px] mt-64 opacity-[12%] backdrop-blur-3xl blur-3xl pointer-events-none rounded-[15rem]'
+          className='absolute w-[300px] h-[500px] md:w-[800px] md:h-[700px] mt-64 opacity-[12%] backdrop-blur-3xl blur-3xl pointer-events-none rounded-[15rem]'
           style={isServer ? {} : history[index]}
         />
         <div
@@ -116,7 +116,9 @@ function InstallButton() {
       className='flex items-center gap-2 px-4 py-2 bg-gray-200 dark:bg-gray-900 rounded-xl'
     >
       npm install meshgrad
-      <span>{copied ? <CopiedIcon /> : <CopyIcon />}</span>
+      <span className='p-1.5 bg-gray-100 rounded-xl dark:bg-gray-800'>
+        {copied ? <CopiedIcon /> : <CopyIcon />}
+      </span>
     </button>
   )
 }
