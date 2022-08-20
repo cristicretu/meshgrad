@@ -201,7 +201,7 @@ function GitHubButton() {
       href='https://github.com/cristicretu/meshgrad'
       target='_blank'
       rel='noopener noreferrer'
-      className='flex items-center gap-2 px-4 py-2 transition duration-200 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-xl'
+      className='flex items-center gap-2 px-4 py-2.5 transition duration-200 hover:bg-gray-200 dark:hover:bg-gray-900 rounded-xl'
     >
       <svg
         width='14'
