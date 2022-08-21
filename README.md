@@ -6,7 +6,7 @@
 
 Meshgrad is a tiny utility to generate native-CSS Mesh Gradients.
 
-[Demo](https://meshgrad.cretu.dev/)
+[Demo - meshgrad.cretu.dev](https://meshgrad.cretu.dev/)
 
 ## Install
 
@@ -16,12 +16,44 @@ $ npm install meshgrad
 
 ## Use
 
+### Vanilla Javascript
+
 ```js
-import generateMeshGradient from 'meshgrad'
+<script type="module">
+  import generateMeshGradient from "https://cdn.skypack.dev/meshgrad";
 
-// number of color stops
-const ELEMENTS = 6
+  // Number of color stops
+  const ELEMENTS = 6;
 
-...
-<div style={'...' && generateMeshGradient(ELEMENTS)} />
+  document.getElementById("box");
+  box.style = generateMeshGradient(ELEMENTS);
+</script>
+
+<div id="box" class="..." />
 ```
+
+### Svelte
+
+```js
+<script>
+import generateMeshGradient from 'meshgrad';
+
+// Number of color stops
+const ELEMENTS = 6;
+</script>
+
+<div style={generateMeshGradient(ELEMENTS)} class="..."/>
+```
+
+### React JSX
+```jsx
+import { generateJSXMeshGradient } from 'meshgrad'
+
+// Number of color stops
+const ELEMENTS = 6;
+
+export function App() {
+  return (
+    <div style={generateJSXMeshGradient(ELEMENTS)} className="..."/>
+  )
+}

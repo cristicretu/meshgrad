@@ -1,22 +1,21 @@
 import { useEffect, useState } from 'react'
 
-import generateMeshGradient from 'meshgrad'
-
 import Container from 'components/Container'
 import cn from 'lib/classNames'
 
+import { generateJSXMeshGradient } from 'meshgrad'
 import packageJSON from '../../meshgrad/package.json'
 
 const ELEMENTS = 6
 
 export default function Home() {
   const [isServer, setIsServer] = useState(true)
-  const [history, setHistory] = useState([generateMeshGradient(ELEMENTS)])
+  const [history, setHistory] = useState([generateJSXMeshGradient(ELEMENTS)])
   const [index, setIndex] = useState(0)
 
   const handleNewGradient = () => {
     setIndex(history.length)
-    setHistory([...history, generateMeshGradient(ELEMENTS)])
+    setHistory([...history, generateJSXMeshGradient(ELEMENTS)])
   }
 
   useEffect(() => {

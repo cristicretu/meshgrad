@@ -3,16 +3,11 @@ const getColor = (): number => {
   return Math.round(Math.random() * 360);
 };
 
-const getPercentage = (value: number): number => {
+const getPercent = (value: number): number => {
   return Math.round((Math.random() * (value * 100)) % 100);
 };
 
-const generateColors = (
-  length: number,
-  initialHue: number,
-  analogous = true,
-  complementary = true
-): string[] => {
+const genColors = (length: number, initialHue: number): string[] => {
   return Array.from({ length }, (_, i) => {
     // analogous colors + complementary colors
     // https://uxplanet.org/how-to-use-a-split-complementary-color-scheme-in-design-a6c3f1e22644
@@ -22,15 +17,12 @@ const generateColors = (
       return `hsl(${initialHue}, 100%, 80%)`;
     }
     // analogous colors
-    if (i < length / 1.4 && analogous) {
+    if (i < length / 1.4) {
       return `hsl(${
         initialHue - 30 * (1 - 2 * (i % 2)) * (i > 2 ? i / 2 : i)
       }, 100%, ${76 - i * (1 - 2 * (i % 2)) * 1.75}%)`;
     }
 
-    if (!complementary) {
-      return `hsl(${initialHue}, 100%, 80%)`;
-    }
     // complementary colors
     return `hsl(${initialHue - 150 * (1 - 2 * (i % 2))}, 100%, ${
       76 - i * (1 - 2 * (i % 2)) * 1.25
@@ -38,34 +30,35 @@ const generateColors = (
   });
 };
 
-const generateRadialGradients = (
-  length: number,
-  colors: string[]
-): string[] => {
+const genGrad = (length: number, colors: string[]): string[] => {
   return Array.from({ length }, (_, i) => {
-    const color = colors[i];
-    const x = getPercentage(i);
-    const y = getPercentage(i * 10);
-
-    return `radial-gradient(at ${x}% ${y}%, ${color} 0px, transparent 50%)\n`;
+    return `radial-gradient(at ${getPercent(i)}% ${getPercent(i * 10)}%, ${
+      colors[i]
+    } 0px, transparent 50%)\n`;
   });
 };
 
-const generateMeshGradient = (length: number) => {
-  const color = getColor();
-
+const genStops = (length: number) => {
   // get the color for the radial gradient
-  const colors = generateColors(length, color);
+  const colors = genColors(length, getColor());
 
   // generate the radial gradient
-  const proprieties = generateRadialGradients(length, colors);
+  const proprieties = genGrad(length, colors);
 
-  const bgColor = `${colors[0]}`;
-  const bgImage = `${proprieties.join(",\n")}`;
-
-  // return [`${bgColor}, ${bgImage}`]
-  const style = { backgroundColor: bgColor, backgroundImage: bgImage };
-  return style;
+  return [colors[0], proprieties.join(",")];
 };
 
+const generateMeshGradient = (length: number) => {
+  const [bgColor, bgImage] = genStops(length);
+
+  return `background-color: ${bgColor}; background-image:${bgImage}`;
+};
+
+const generateJSXMeshGradient = (length: number) => {
+  const [bgColor, bgImage] = genStops(length);
+
+  return { backgroundColor: bgColor, backgroundImage: bgImage };
+};
+
+export { generateJSXMeshGradient };
 export default generateMeshGradient;
