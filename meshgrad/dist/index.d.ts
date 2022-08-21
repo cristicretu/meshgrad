@@ -4,4 +4,4 @@ declare const generateJSXMeshGradient: (length: number) => {
     backgroundImage: string;
 };
 
-export { generateMeshGradient as default, generateJSXMeshGradient };
+export { generateJSXMeshGradient, generateMeshGradient };

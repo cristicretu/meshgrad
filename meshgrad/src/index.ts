@@ -60,5 +60,5 @@ const generateJSXMeshGradient = (length: number) => {
   return { backgroundColor: bgColor, backgroundImage: bgImage };
 };
 
-export { generateJSXMeshGradient };
-export default generateMeshGradient;
+export { generateMeshGradient as generateMeshGradient };
+export { generateJSXMeshGradient as generateJSXMeshGradient };

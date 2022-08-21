@@ -20,7 +20,7 @@ $ npm install meshgrad
 
 ```js
 <script type="module">
-  import generateMeshGradient from "https://cdn.skypack.dev/meshgrad";
+  import { generateMeshGradient } from "https://cdn.skypack.dev/meshgrad";
 
   // Number of color stops
   const ELEMENTS = 6;
@@ -36,7 +36,7 @@ $ npm install meshgrad
 
 ```js
 <script>
-import generateMeshGradient from 'meshgrad';
+import { generateMeshGradient } from 'meshgrad';
 
 // Number of color stops
 const ELEMENTS = 6;
@@ -46,14 +46,14 @@ const ELEMENTS = 6;
 ```
 
 ### React JSX
+
 ```jsx
-import { generateJSXMeshGradient } from 'meshgrad'
+import { generateJSXMeshGradient } from "meshgrad";
 
 // Number of color stops
 const ELEMENTS = 6;
 
 export function App() {
-  return (
-    <div style={generateJSXMeshGradient(ELEMENTS)} className="..."/>
-  )
+  return <div style={generateJSXMeshGradient(ELEMENTS)} className="..." />;
 }
+```
