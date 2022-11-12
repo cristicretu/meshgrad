@@ -16,6 +16,11 @@ $ npm install meshgrad
 
 ## Use
 
+### Options:
+- length: *number* - ammount of color stops
+- baseColor: *string* - hex string that specifies the root color
+- hash: *number* - specify a number that will generate the same position each time
+
 ### Vanilla Javascript
 
 ```js
