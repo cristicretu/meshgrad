@@ -1,5 +1,5 @@
 {
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "A tiny utility for generating CSS Mesh Gradients",
   "homepage": "https://meshgrad.cretu.dev",
   "name": "meshgrad",

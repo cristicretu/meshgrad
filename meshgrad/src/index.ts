@@ -94,7 +94,7 @@ const genGrad = (length: number, colors: string[], hash?: number): string[] => {
 
 const genStops = (length: number, baseColor?: number, hash?: number) => {
   // get the color for the radial gradient
-  const colors = genColors(length, baseColor ? getColor() : undefined);
+  const colors = genColors(length, baseColor ? baseColor : getColor());
   // generate the radial gradient
   const proprieties = genGrad(length, colors, hash ? hash : undefined);
   return [colors[0], proprieties.join(",")];
