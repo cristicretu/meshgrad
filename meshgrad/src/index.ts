@@ -66,18 +66,18 @@ const genColors = (length: number, initialHue: number): string[] => {
 
     // base color
     if (i === 0) {
-      return `hsl(${initialHue}, 100%, 80%)`;
+      return `hsl(${initialHue}, 100%, 74%)`;
     }
     // analogous colors
     if (i < length / 1.4) {
       return `hsl(${
         initialHue - 30 * (1 - 2 * (i % 2)) * (i > 2 ? i / 2 : i)
-      }, 100%, ${76 - i * (1 - 2 * (i % 2)) * 1.75}%)`;
+      }, 100%, ${64 - i * (1 - 2 * (i % 2)) * 1.75}%)`;
     }
 
     // complementary colors
     return `hsl(${initialHue - 150 * (1 - 2 * (i % 2))}, 100%, ${
-      76 - i * (1 - 2 * (i % 2)) * 1.25
+      66 - i * (1 - 2 * (i % 2)) * 1.25
     }%)`;
   });
 };
@@ -88,7 +88,7 @@ const genGrad = (length: number, colors: string[], hash?: number): string[] => {
       hash ? getHashPercent(i, hash, length) : getPercent(i)
     }% ${hash ? getHashPercent(i * 10, hash, length) : getPercent(i * 10)}%, ${
       colors[i]
-    } 0px, transparent 50%)\n`;
+    } 0px, transparent 55%)\n`;
   });
 };
 
