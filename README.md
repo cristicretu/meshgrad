@@ -17,9 +17,10 @@ $ npm install meshgrad
 ## Use
 
 ### Options:
-- length: *number* - ammount of color stops
-- baseColor: *string* - hex string that specifies the root color
-- hash: *number* - specify a number that will generate the same position each time
+
+- length: _number_ - ammount of color stops
+- baseColor: _string_ - hex string that specifies the root color
+- hash: _number_ - specify a number that will generate the same position each time
 
 ### Vanilla Javascript
 
@@ -62,3 +63,7 @@ export function App() {
   return <div style={generateJSXMeshGradient(ELEMENTS)} className="..." />;
 }
 ```
+
+### License
+
+MIT

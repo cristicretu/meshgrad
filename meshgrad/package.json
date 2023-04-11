@@ -1,5 +1,5 @@
 {
-  "version": "0.0.11",
+  "version": "0.0.15",
   "description": "A tiny utility for generating CSS Mesh Gradients",
   "homepage": "https://meshgrad.cretu.dev",
   "name": "meshgrad",
@@ -29,7 +29,19 @@
     "dev": "tsup src --watch"
   },
   "keywords": [
-    "mesh-gradients"
+    "mesh-gradients",
+    "gradient",
+    "css-gradient",
+    "meshgradient",
+    "gradient-generator",
+    "npm-gradient",
+    "npm-meshgradient",
+    "css-meshgradient",
+    "mesh-gradient-generator",
+    "mesh-gradient-generator-npm",
+    "mesh-gradient-generator-npm-package",
+    "mesh-gradient-generator-npm-package-css",
+    "mesh-gradient-generator-npm-package-css-meshgradient"
   ],
   "devDependencies": {
     "tsup": "^6.2.2"
