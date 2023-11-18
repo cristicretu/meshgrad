@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { SetStateAction, useCallback, useEffect, useState } from 'react'
 
 // import { generateJSXMeshGradient } from 'meshgrad'
 
@@ -12,14 +12,37 @@ const ELEMENTS = 6
 
 export default function Home() {
   const [isServer, setIsServer] = useState(true)
-  const [history, setHistory] = useState([
-    generateJSXMeshGradient(ELEMENTS, '#BF40BF'),
-  ])
-  const [index, setIndex] = useState(0)
+  const [elements, setElements] = useState(ELEMENTS)
+  const [baseColor, setBaseColor] = useState('#BF40BF')
+  const [seed, setSeed] = useState(1337)
 
-  const handleNewGradient = () => {
-    setIndex(history.length)
-    setHistory([...history, generateJSXMeshGradient(ELEMENTS, '#BF40BF')])
+  const [gradientStyle, setGradientStyle] = useState({})
+
+  const randomizeBaseColor = () => {
+    const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
+    setBaseColor(randomColor)
+  }
+
+  const updateGradient = useCallback(() => {
+    setGradientStyle(generateJSXMeshGradient(elements, baseColor, seed))
+  }, [elements, baseColor, seed])
+
+  useEffect(() => {
+    updateGradient()
+  }, [elements, baseColor, seed, updateGradient])
+
+  const handleElementsChange = (event: { target: { value: any } }) => {
+    setElements(Number(event.target.value))
+  }
+
+  const handleBaseColorChange = (event: {
+    target: { value: SetStateAction<string> }
+  }) => {
+    setBaseColor(event.target.value)
+  }
+
+  const handleSeedChange = (event: { target: { value: any } }) => {
+    setSeed(Number(event.target.value))
   }
 
   useEffect(() => {
@@ -28,6 +51,50 @@ export default function Home() {
 
   return (
     <Container>
+      <div className='z-10 p-4 bg-white/10 backdrop-blur-md rounded-xl shadow-lg absolute left-4 top-8'>
+        <div className='flex flex-col gap-4'>
+          <label htmlFor='elements' className='flex flex-col'>
+            Number of Elements:
+            <input
+              type='number'
+              id='elements'
+              value={elements}
+              onChange={handleElementsChange}
+              className='mt-1'
+            />
+          </label>
+
+          <label htmlFor='baseColor' className='flex flex-col'>
+            Base Color:
+            <input
+              type='color'
+              id='baseColor'
+              value={baseColor}
+              onChange={handleBaseColorChange}
+              className='mt-1'
+            />
+          </label>
+
+          <label htmlFor='seed' className='flex flex-col'>
+            Seed:
+            <input
+              type='number'
+              id='seed'
+              value={seed}
+              onChange={handleSeedChange}
+              className='mt-1'
+            />
+          </label>
+
+          <button
+            onClick={randomizeBaseColor}
+            className='px-4 py-2 bg-sky-500 text-white rounded-md shadow-sm hover:bg-sky-400'
+          >
+            Randomize Color
+          </button>
+        </div>
+      </div>
+
       <div className='relative inset-0 flex flex-col items-center justify-center gap-4'>
         <VersionBadge />
         <h1 className='font-semibold tracking-tighter text-7xl'>Meshgrad</h1>
@@ -39,61 +106,14 @@ export default function Home() {
           <GitHubButton />
         </div>
 
-        <button
-          onMouseDownCapture={() => handleNewGradient()}
-          className='z-10 transition text-tertiary hover:text-sky-500'
-        >
-          Try it here
-        </button>
         <div
-          className='absolute w-[300px] h-[500px] md:w-[800px] md:h-[700px] mt-64 opacity-[12%] backdrop-blur-3xl blur-3xl pointer-events-none rounded-[15rem]'
-          style={isServer ? {} : history[index]}
+          className='absolute w-[300px] h-[500px] md:w-[800px] md:h-[700px] mt-72 opacity-[12%] backdrop-blur-3xl blur-3xl pointer-events-none rounded-[15rem]'
+          style={isServer ? {} : gradientStyle}
         />
         <div
-          style={isServer ? {} : history[index]}
-          className='z-10 w-48 h-48 rounded-xl'
+          style={isServer ? {} : gradientStyle}
+          className='z-10 w-64 h-64 rounded-xl'
         />
-        <div className='flex gap-4'>
-          <button
-            onClick={() => {
-              if (index > 0) {
-                setIndex(index - 1)
-              }
-            }}
-            className={cn(
-              'transition duration-200 ease-in-out group text-tertiary hover:text-sky-600',
-              index > 0 ? 'opacity-100' : 'opacity-0'
-            )}
-          >
-            <span
-              aria-hidden='true'
-              className='inline-block mr-1 transition-transform duration-200 ease-in-out translate-x-0 group-hover:-translate-x-1'
-            >
-              ←
-            </span>
-            Previous
-          </button>
-
-          <button
-            onClick={() => {
-              if (index < history.length - 1) {
-                setIndex(index + 1)
-              }
-            }}
-            className={cn(
-              'transition duration-200 ease-in-out group text-tertiary hover:text-sky-600',
-              index < history.length - 1 ? 'opacity-100' : 'opacity-0'
-            )}
-          >
-            Next
-            <span
-              aria-hidden='true'
-              className='inline-block ml-1 transition-transform duration-200 ease-in-out translate-x-0 group-hover:translate-x-1'
-            >
-              →
-            </span>
-          </button>
-        </div>
       </div>
       <Footer />
     </Container>
