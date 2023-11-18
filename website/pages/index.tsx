@@ -12,12 +12,14 @@ const ELEMENTS = 6
 
 export default function Home() {
   const [isServer, setIsServer] = useState(true)
-  const [history, setHistory] = useState([generateJSXMeshGradient(ELEMENTS)])
+  const [history, setHistory] = useState([
+    generateJSXMeshGradient(ELEMENTS, '#BF40BF'),
+  ])
   const [index, setIndex] = useState(0)
 
   const handleNewGradient = () => {
     setIndex(history.length)
-    setHistory([...history, generateJSXMeshGradient(ELEMENTS)])
+    setHistory([...history, generateJSXMeshGradient(ELEMENTS, '#BF40BF')])
   }
 
   useEffect(() => {
