@@ -22,12 +22,12 @@ const MAX_PERCENT = 100;
 const ANGLE_MULTIPLIER = 30;
 const BRIGHTNESS_START = 64;
 const BRIGHTNESS_DECREMENT = 1.75;
-const COMPLEMENTARY_ANGLE_MULTIPLIER = 150;
 const COMPLEMENTARY_BRIGHTNESS_START = 66;
-const COMPLEMENTARY_BRIGHTNESS_DECREMENT = 1.25;
 const ANALOGOUS_THRESHOLD_RATIO = 1.4;
 const SATURATION = 100;
 const LIGHTNESS = 74;
+const DEFAULT_GRADIENT_SIZE = "55%";
+const DEFAULT_TRANSPARENCY_POINT = "0px";
 
 const randomGenerator = new SeededRandom(1337);
 
@@ -130,7 +130,13 @@ const genColors = (
  });
 };
 
-const genGrad = (length: number, colors: string[], seed?: number): string[] => {
+const genGrad = (
+ length: number,
+ colors: string[],
+ seed?: number,
+ gradientSize: string = DEFAULT_GRADIENT_SIZE,
+ transparencyPoint: string = DEFAULT_TRANSPARENCY_POINT
+): string[] => {
  const seededRandom = seed ? new SeededRandom(seed) : undefined;
 
  return Array.from({ length }, (_, i) => {
@@ -141,7 +147,7 @@ const genGrad = (length: number, colors: string[], seed?: number): string[] => {
    ? getHashPercent(i * 10, seededRandom.next(), length)
    : getPercent();
 
-  return `radial-gradient(at ${percentX}% ${percentY}%, ${colors[i]} 0px, transparent 55%)\n`;
+  return `radial-gradient(at ${percentX}% ${percentY}%, ${colors[i]} ${transparencyPoint}, transparent ${gradientSize})\n`;
  });
 };
 
