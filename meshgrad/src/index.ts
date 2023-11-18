@@ -69,7 +69,7 @@ const hexToHSL = (hex?: string): number | undefined => {
  const max = Math.max(r, g, b),
   min = Math.min(r, g, b);
  let h: number,
-  s,
+  s: number,
   l = (max + min) / 2;
 
  if (max === min) {
@@ -100,39 +100,37 @@ const hexToHSL = (hex?: string): number | undefined => {
 const genColors = (
  length: number,
  initialHue: number,
- seed?: number
+ seed: number
 ): string[] => {
  const seededRandom = seed ? new SeededRandom(seed) : undefined;
-
  return Array.from({ length }, (_, i) => {
-  // base color
   if (i === 0) {
-   return `hsl(${initialHue}, 100%, 74%)`; // Base color remains the same
+   return `hsl(${initialHue}, ${SATURATION}%, ${LIGHTNESS}%)`; // Base color remains the same
   }
 
-  // Calculate the hue shift using the seeded random generator
   const hueShift = seededRandom
-   ? Math.round(seededRandom.nextFloat() * MAX_HUE)
-   : Math.round(Math.random() * MAX_HUE);
+   ? Math.round(seededRandom.nextFloat() * ANGLE_MULTIPLIER * (1 - 2 * (i % 2)))
+   : ANGLE_MULTIPLIER * (1 - 2 * (i % 2)) * (i > 2 ? i / 2 : i);
   const brightnessShift = seededRandom
-   ? Math.round(seededRandom.nextFloat() * MAX_PERCENT)
-   : Math.round(Math.random() * MAX_PERCENT);
+   ? Math.round(
+      seededRandom.nextFloat() * BRIGHTNESS_DECREMENT * (1 - 2 * (i % 2))
+     )
+   : BRIGHTNESS_DECREMENT * (1 - 2 * (i % 2)) * i;
 
   // analogous colors
   if (i < length / ANALOGOUS_THRESHOLD_RATIO) {
-   return `hsl(${(initialHue + hueShift) % MAX_HUE}, 100%, ${
+   return `hsl(${(initialHue + hueShift) % MAX_HUE}, ${SATURATION}%, ${
     BRIGHTNESS_START - brightnessShift
    }%)`;
   }
   // complementary colors
-  return `hsl(${(initialHue + hueShift + 180) % MAX_HUE}, 100%, ${
+  return `hsl(${(initialHue + hueShift + 180) % MAX_HUE}, ${SATURATION}%, ${
    COMPLEMENTARY_BRIGHTNESS_START - brightnessShift
   }%)`;
  });
 };
 
 const genGrad = (length: number, colors: string[], seed?: number): string[] => {
- // Initialize the seeded random generator with the provided seed
  const seededRandom = seed ? new SeededRandom(seed) : undefined;
 
  return Array.from({ length }, (_, i) => {

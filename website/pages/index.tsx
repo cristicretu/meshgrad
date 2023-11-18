@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
-import { generateJSXMeshGradient } from 'meshgrad'
+// import { generateJSXMeshGradient } from 'meshgrad'
 
 import Container from 'components/Container'
 import cn from 'lib/classNames'
 
+import { generateJSXMeshGradient } from '../../meshgrad'
 import packageJSON from '../../meshgrad/package.json'
 
 const ELEMENTS = 6

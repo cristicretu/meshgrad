@@ -1,6 +1,9 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+website/node_modules
+/website/node_modules
+meshgrad/node_modules
 /node_modules
 /.pnp
 .pnp.js
