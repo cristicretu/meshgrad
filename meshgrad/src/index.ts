@@ -127,27 +127,47 @@ const genGrad = (
  seededRandom: SeededRandom,
  gradientSize: string = DEFAULT_GRADIENT_SIZE,
  transparencyPoint: string = DEFAULT_TRANSPARENCY_POINT,
- gradientShape: string = DEFAULT_GRADIENT_SHAPE
+ gradientShape: string = DEFAULT_GRADIENT_SHAPE,
+ customColors?: string[]
 ): string[] => {
- return Array.from({ length }, (_, i) => {
-  const percentX = getHashPercent(i, seededRandom.next(), length);
-  const percentY = getHashPercent(i * 10, seededRandom.next(), length);
-
-  return `radial-gradient(${gradientShape} at ${percentX}% ${percentY}%, ${colors[i]} ${transparencyPoint}, transparent ${gradientSize})`;
- });
+ if (customColors && customColors.length) {
+  const isValidHex = (hex: string) => /^#([0-9A-F]{3}){1,2}$/i.test(hex);
+  const validColors = customColors.filter(isValidHex);
+  return validColors.map((color, i) => {
+   const position = ((i + 1) / validColors.length) * 100;
+   return `radial-gradient(${gradientShape} at 50% 50%, ${color} ${transparencyPoint}, transparent ${position}%)`;
+  });
+ } else {
+  return Array.from({ length }, (_, i) => {
+   const percentX = getHashPercent(i, seededRandom.next(), length);
+   const percentY = getHashPercent(i * 10, seededRandom.next(), length);
+   return `radial-gradient(${gradientShape} at ${percentX}% ${percentY}%, ${colors[i]} ${transparencyPoint}, transparent ${gradientSize})`;
+  });
+ }
 };
 
 const genStops = (
  length: number,
  baseColor?: string,
- seed?: number
+ seed?: number,
+ customColors?: string[]
 ): [string, string] | undefined => {
  const seededRandom = seed ? new SeededRandom(seed) : randomGenerator;
  const HSLColor = hexToHSL(baseColor);
  const initialHue = HSLColor !== undefined ? HSLColor : getColor();
 
  const colors = genColors(length, initialHue, seededRandom);
- const gradients = genGrad(length, colors, seededRandom);
+ const gradients = genGrad(
+  length,
+  colors,
+  seededRandom,
+  DEFAULT_GRADIENT_SIZE,
+  DEFAULT_TRANSPARENCY_POINT,
+  DEFAULT_GRADIENT_SHAPE,
+  customColors ? customColors : undefined
+ );
+
+ console.log(colors, gradients);
 
  return [colors[0], gradients.join(",")];
 };
@@ -155,12 +175,14 @@ const genStops = (
 const generateJSXMeshGradient = (
  length: number,
  baseColor?: string,
- hash?: number
+ hash?: number,
+ customColors?: string[]
 ) => {
  const [bgColor, bgImage] = genStops(
   length,
   baseColor ? baseColor : undefined,
-  hash ? hash : undefined
+  hash ? hash : undefined,
+  customColors ? customColors : undefined
  );
  return { backgroundColor: bgColor, backgroundImage: bgImage };
 };
@@ -168,12 +190,14 @@ const generateJSXMeshGradient = (
 const generateMeshGradient = (
  length: number,
  baseColor?: string,
- hash?: number
+ hash?: number,
+ customColors?: string[]
 ) => {
  const [bgColor, bgImage] = genStops(
   length,
   baseColor,
-  hash ? hash : undefined
+  hash ? hash : undefined,
+  customColors ? customColors : undefined
  );
  return { backgroundColor: bgColor, backgroundImage: bgImage };
 };

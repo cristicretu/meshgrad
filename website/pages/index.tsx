@@ -20,11 +20,19 @@ export default function Home() {
 
   const randomizeBaseColor = () => {
     const randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
+    const randomSeed = Math.floor(Math.random() * 10000)
+    setSeed(randomSeed)
     setBaseColor(randomColor)
   }
 
   const updateGradient = useCallback(() => {
-    setGradientStyle(generateJSXMeshGradient(elements, baseColor, seed))
+    setGradientStyle(
+      generateJSXMeshGradient(elements, baseColor, seed, [
+        '#F43A47',
+        '#453A94',
+        '#K43p1c',
+      ])
+    )
   }, [elements, baseColor, seed])
 
   useEffect(() => {
