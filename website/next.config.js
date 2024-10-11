@@ -1,4 +1,5 @@
 module.exports = {
+  output: 'export',
   eslint: {
     dirs: ['pages', 'components'],
   },
